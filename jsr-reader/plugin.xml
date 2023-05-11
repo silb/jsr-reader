@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            name="Open a JSR from the context menu"
+            defaultHandler="org.secnod.eclipse.jsrreader.JsrMenuHandler"
+            id="org.secnod.eclipse.jsrreader.menu.openjsr">
+         <commandParameter
+               id="org.secnod.jsrreader.jsrNumber"
+               name="JSR"
+               optional="true">
+         </commandParameter>
+         <commandParameter
+               id="org.secnod.jsrreader.jsrVariant"
+               name="Variant"
+               optional="true">
+         </commandParameter>
+      </command>
+      <command
+            categoryId="org.secnod.jsrreader.category"
+            defaultHandler="org.secnod.eclipse.jsrreader.OpenJsrHandler"
+            description="Open a JSR"
+            id="org.secnod.jsrreader.openjsr"
+            name="Open a JSR">
+      </command>
+      <category
+            id="org.secnod.jsrreader.category"
+            name="JSR Reader">
+      </category>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+         
+         <!--
+         popup:org.eclipse.jdt.ui.PackageExplorer
+         popup:org.eclipse.ui.popup.any
+         -->
+      <menuContribution allPopups="true"
+            locationURI="popup:org.eclipse.ui.popup.any">
+            <dynamic
+                  id="jsrreader.menu.mainjsr"
+                  class="org.secnod.eclipse.jsrreader.JsrMenu">
+                  <visibleWhen
+                     checkEnabled="false">
+                     <reference definitionId="org.secnod.eclipse.jsrreader.menu.popup.visible"></reference>
+               </visibleWhen>
+            </dynamic>
+      </menuContribution>
+   </extension>
+   
+   <extension point="org.eclipse.core.expressions.definitions">
+     <definition id="org.secnod.eclipse.jsrreader.menu.popup.visible">
+       <or>
+         <with variable="activePartId">
+           <or>
+             <equals value="org.eclipse.jdt.ui.CompilationUnitEditor" />
+             <equals value="org.eclipse.jdt.ui.ClassFileEditor" />
+             <equals value="org.eclipse.ui.views.ContentOutline" />
+             <!-- TODO Content outline only for Java elements -->
+           </or>
+         </with>
+         <with variable="activeMenuSelection">
+           <and>
+             <count value="1"></count>
+             <iterate ifEmpty="false" operator="and">
+               <or>
+                 <adapt type="org.eclipse.jdt.core.IPackageFragmentRoot"></adapt>
+                 <adapt type="org.eclipse.jdt.core.IPackageFragment"></adapt>
+                 <adapt type="org.eclipse.jdt.core.IClassFile"></adapt>
+                 <adapt type="org.eclipse.jdt.core.IType"></adapt>
+               </or>
+             </iterate>
+           </and>
+         </with>
+       </or>
+     </definition>
+   </extension>
+   <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+            class="org.secnod.eclipse.jsrreader.JsrPreferencePage"
+            id="org.secnod.eclipse.jsrreader.JsrPreferencePage"
+            name="JSR Reader">
+      </page>
+   </extension>
+
+</plugin>

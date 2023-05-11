@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>org.secnod.jsrreader</groupId>
+  <artifactId>jsrreader-parent</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>pom</packaging>
+  
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.compiler.source>11</maven.compiler.source>
+    <maven.compiler.target>11</maven.compiler.target>
+    <maven.compiler.release>11</maven.compiler.release>
+    <maven.compiler.showWarnings>true</maven.compiler.showWarnings>
+    <tycho.version>3.0.4</tycho.version>
+  </properties>
+  
+  <repositories>
+    <repository>
+      <id>eclipse</id>
+      <url>http://download.eclipse.org/releases/2023-03</url>
+      <layout>p2</layout>
+    </repository>
+    <repository>
+      <id>eclipse-orbit</id>
+      <url>https://download.eclipse.org/tools/orbit/downloads/drops/R20230302014618/repository</url>
+      <layout>p2</layout>
+    </repository>
+  </repositories>
+  
+  <modules>
+    <module>feature</module>
+    <module>jsr-reader</module>
+    <module>update</module>
+  </modules>
+  
+  <build>
+    <plugins>
+    
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.11.0</version>
+        <configuration>
+          <verbose>true</verbose>
+          <compilerArgument>-Xlint</compilerArgument>
+        </configuration>
+      </plugin>
+      
+      <plugin>
+        <groupId>org.eclipse.tycho</groupId>
+        <artifactId>tycho-maven-plugin</artifactId>
+        <version>${tycho.version}</version>
+        <extensions>true</extensions>
+      </plugin>
+      
+      <plugin>
+        <groupId>org.eclipse.tycho</groupId>
+        <artifactId>target-platform-configuration</artifactId>
+        <version>${tycho.version}</version>
+        <configuration>
+          <pomDependencies>consider</pomDependencies>
+          <environments>
+            <environment>
+              <os>linux</os>
+              <ws>gtk</ws>
+              <arch>x86_64</arch>
+            </environment>
+          </environments>
+        </configuration>
+      </plugin>
+      
+    </plugins>
+  </build>
+  <dependencies>
+    <dependency>
+      <!-- Workaround for transitive dependencies
+           http://wiki.eclipse.org/Tycho/How_Tos/Dependency_on_pom-first_artifacts#Pom-first_dependencies_of_manifest-first_projects_are_not_fully_transitive
+      -->
+      <groupId>org.secnod.jsrlib</groupId>
+      <artifactId>jsrlib</artifactId>
+      <version>0.0.1-SNAPSHOT</version>
+    </dependency>
+  </dependencies>
+  
+  <profiles>
+    <profile>
+      <id>release</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-jarsigner-plugin</artifactId>
+              <version>3.0.0</version>
+              <executions>
+                <execution>
+                  <id>sign</id>
+                  <goals>
+                    <goal>sign</goal>
+                  </goals>
+                </execution>
+              </executions>
+                <!--
+                Configure security sensitive entries with properties a profile named codesign in your settings.xml.
+                -->
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
+  
+</project>

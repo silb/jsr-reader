@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="org.secnod.jsrreader.feature"
+      label="JSR Reader"
+      version="0.0.1.qualifier">
+
+   <description url="https://github.com/silb/jsr-reader">
+      Add a context menu to Java elements and editor selections for opening relevant Java Specification Requests (JSRs) from the Java Community Process site at &lt;http://jcp.org&gt;.
+   </description>
+
+   <copyright>
+      Copyright (c) 2012 - 2023 Stig Inge Lea Bjørnsen
+   </copyright>
+
+   <license url="http://www.eclipse.org/legal/epl-v10.html">
+      Copyright (c) 2012 - 2023 Stig Inge Lea Bjørnsen, licensed under the Eclipse Public License 1.0.
+   </license>
+
+   <url>
+      <update label="Secnod Snapshots" url="https://dist.secnod.org/eclipse/snapshots/"/>
+      <discovery label="Eclipse Orbit 2023-03" url="https://download.eclipse.org/tools/orbit/downloads/drops/R20230302014618/repository/"/>
+   </url>
+
+   <requires>
+      <import plugin="org.eclipse.ui"/>
+      <import plugin="org.eclipse.core.runtime"/>
+      <import plugin="org.eclipse.jface.text"/>
+      <import plugin="org.eclipse.ui.ide"/>
+      <import plugin="org.eclipse.core.filesystem"/>
+      <import plugin="org.eclipse.jdt.core" version="3.10.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.jdt.ui" version="3.10.2" match="greaterOrEqual"/>
+      <import plugin="org.secnod.jsrlib" version="0.0.1.SNAPSHOT"/>
+      <import plugin="org.slf4j.api" version="1.7.0" match="compatible"/>
+   </requires>
+
+   <plugin
+         id="org.secnod.jsrreader"
+         download-size="0"
+         install-size="0"
+         version="0.0.1.qualifier"
+         unpack="false"/>
+
+</feature>
