@@ -1,5 +1,7 @@
 package org.secnod.eclipse.jsrreader;
 
+import java.util.regex.Pattern;
+
 import org.eclipse.jdt.core.IClassFile;
 import org.eclipse.jdt.core.IField;
 import org.eclipse.jdt.core.IJavaElement;
@@ -12,6 +14,8 @@ import org.eclipse.jdt.core.JavaModelException;
 import org.eclipse.jdt.core.Signature;
 
 class PackageName {
+
+    private static final Pattern hierarchy = Pattern.compile("^javax?\\..*");
 
     static String of(IJavaElement element) throws JavaModelException {
         switch (element.getElementType()) {
@@ -36,7 +40,7 @@ class PackageName {
     private static String fromJarFile(IPackageFragmentRoot jar) throws JavaModelException {
         for (IJavaElement child : jar.getChildren()) {
             IPackageFragment p = (IPackageFragment) child;
-            if (p.hasSubpackages() || !p.getElementName().matches("^javax?\\..*")) continue;
+            if (p.hasSubpackages() || !hierarchy.matcher(p.getElementName()).matches()) continue;
             return fromPackage(p);
         }
         return null;

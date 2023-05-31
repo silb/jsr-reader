@@ -25,7 +25,8 @@ public class SelectionHandler {
             throws JavaModelException {
         ITypeRoot root = (ITypeRoot) JavaUI.getEditorInputJavaElement(editorInput);
         IJavaElement[] javaElements = root.codeSelect(textSelection.getOffset(), textSelection.getLength());
-        if (javaElements.length == 0) return null;
+        if (javaElements.length == 0)
+            return null;
         IJavaElement javaElement = javaElements[0];
         //IJavaElement javaElement = root.getElementAt(textSelection.getOffset());
         return PackageName.of(javaElement);

@@ -22,14 +22,10 @@ import org.secnod.jsr.store.JsrStore;
 
 public class JsrPreferencePage extends PreferencePage implements IWorkbenchPreferencePage {
 
-    public JsrPreferencePage() {
-        super();
-    }
+    public JsrPreferencePage() {}
 
     @Override
-    public void init(IWorkbench workbench) {
-
-    }
+    public void init(IWorkbench workbench) {}
 
     @Override
     protected Control createContents(Composite parent) {

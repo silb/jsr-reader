@@ -3,7 +3,6 @@ package org.secnod.eclipse.jsrreader;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.Map;
 
 import org.eclipse.jface.action.IContributionItem;
 import org.eclipse.jface.action.MenuManager;
@@ -31,11 +30,13 @@ public class JsrMenu extends CompoundContributionItem {
 
         Activator activator = Activator.getDefault();
         String packageName = activator.selectionHandler.packageNameFromSelection(activePartId, selection, editorInput);
-        if (packageName == null) return new IContributionItem[0];
+        if (packageName == null)
+            return new IContributionItem[0];
         JsrIndex index = activator.index;
 
         Jsr mainJsr = index.queryByPackage(packageName);
-        if (mainJsr == null) return new IContributionItem[0];
+        if (mainJsr == null)
+            return new IContributionItem[0];
 
         Collection<Jsr> jsrsForCurrentSelection = index.queryAllByPackage(packageName);
         jsrsForCurrentSelection.remove(mainJsr);
@@ -57,7 +58,7 @@ public class JsrMenu extends CompoundContributionItem {
                 CommandContributionItem.STYLE_PUSH
                 );
 
-        StringBuilder label = new StringBuilder("Open ").append(jsr);
+        StringBuilder label = new StringBuilder("Open JSR ").append(jsr);
         if (jsr.tags != null && !jsr.tags.isEmpty()) {
             label.append(" [");
             for (Iterator<String> i = jsr.tags.iterator(); i.hasNext();) {
@@ -73,7 +74,7 @@ public class JsrMenu extends CompoundContributionItem {
         c.tooltip = jsr.title;
         c.icon = icon;
 
-        Map<String, String> params = new HashMap<>();
+        var params = new HashMap<>();
         params.put(JsrMenuHandler.JSR_NUMBER_PARAM, jsr.getJsrNumber().toString());
         params.put(JsrMenuHandler.JSR_VARIANT_PARAM, jsr.getVariant());
         c.parameters = params;

@@ -31,7 +31,8 @@ public class OpenJsrHandler extends AbstractHandler {
         IInputValidator validator = new IInputValidator() {
             @Override
             public String isValid(String newText) {
-                if (newText == null || newText.isEmpty()) return "";
+                if (newText == null || newText.isEmpty())
+                    return "";
                 return JsrId.of(newText) != null
                         ? null
                         : "Must be a number and an optional space and word";
@@ -40,16 +41,16 @@ public class OpenJsrHandler extends AbstractHandler {
         InputDialog prompt = new InputDialog(window.getShell(), "Open a JSR",
                 "Specify a JSR with an optional variant", null, validator);
         //            prompt.setBlockOnOpen(true);
-        if (InputDialog.OK != prompt.open()) return null;
+        if (InputDialog.OK != prompt.open())
+            return null;
         JsrId id = JsrId.of(prompt.getValue());
 
         File jsrFile = Activator.getDefault().jsrStore.find(id);
 
-        if (jsrFile != null) {
+        if (jsrFile != null)
             openJsr(window, id, jsrFile);
-        } else {
+        else
             new DownloadJsrJob(id).schedule();
-        }
 
         return null;
     }
