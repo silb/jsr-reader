@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Automatic-Module-Name: org.secnod.jsrreader
 Bundle-ManifestVersion: 2
-Bundle-Name: org.secnod.jsrreader
+Bundle-Name: JSR Reader Plugin
 Bundle-SymbolicName: org.secnod.jsrreader;singleton:=true
 Bundle-Version: 0.0.1.qualifier
 Bundle-Activator: org.secnod.eclipse.jsrreader.Activator
