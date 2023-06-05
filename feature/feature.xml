@@ -31,7 +31,7 @@ Java Community Process site at &lt;https://jcp.org&gt;.
       <import plugin="org.eclipse.core.filesystem"/>
       <import plugin="org.eclipse.jdt.core" version="3.10.0" match="greaterOrEqual"/>
       <import plugin="org.eclipse.jdt.ui" version="3.10.2" match="greaterOrEqual"/>
-      <import plugin="org.secnod.jsrlib" version="0.0.1.SNAPSHOT"/>
+      <import plugin="org.secnod.jsrlib" version="0.0.1"/>
       <import plugin="org.slf4j.api" version="1.7.0" match="compatible"/>
    </requires>
 

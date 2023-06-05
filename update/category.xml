@@ -3,7 +3,7 @@
    <feature id="org.secnod.jsrreader.feature" version="0.0.1.qualifier">
       <category name="jsrreader"/>
    </feature>
-   <bundle id="org.secnod.jsrlib">
+   <bundle id="org.secnod.jsrlib" version="0.0.1">
       <category name="jsrreader"/>
    </bundle>
    <category-def name="jsrreader" label="JSR Reader"/>
