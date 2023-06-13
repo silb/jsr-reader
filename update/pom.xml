@@ -31,6 +31,27 @@
       <build>
         <plugins>
           <plugin>
+            <artifactId>maven-antrun-plugin</artifactId>
+            <version>3.1.0</version>
+            <executions>
+              <execution>
+                <phase>validate</phase>
+                <configuration>
+                  <exportAntProperties>true</exportAntProperties>
+                  <target>
+                    <condition property="secnod-eclipse-repo.url" value="${secnod-eclipse-snapshots.url}" else="${secnod-eclipse-releases.url}">
+                      <matches pattern="-SNAPSHOT$" string="${project.version}" />
+                    </condition>
+                    <echo level="info" message="Eclipse P2 repository upload URL: ${secnod-eclipse-repo.url}" />
+                  </target>
+                </configuration>
+                <goals>
+                  <goal>run</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
             <groupId>org.codehaus.mojo</groupId>
             <artifactId>wagon-maven-plugin</artifactId>
             <version>2.0.2</version>
