@@ -8,6 +8,7 @@
     <version>0.0.1-SNAPSHOT</version>
   </parent>
   <artifactId>org.secnod.jsrreader.update</artifactId>
+  <name>Secnod Eclipse repository</name>
   <packaging>eclipse-repository</packaging>
 
   <build>
