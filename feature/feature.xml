@@ -10,7 +10,7 @@ opening relevant Java Specification Requests (JSRs) from the
 Java Community Process site at &lt;https://jcp.org&gt;.
    </description>
 
-   <copyright>
+   <copyright url="https://dist.secnod.org/jsr-reader">
       Copyright (c) 2012 - 2023 Stig Inge Lea Bjørnsen
    </copyright>
 
